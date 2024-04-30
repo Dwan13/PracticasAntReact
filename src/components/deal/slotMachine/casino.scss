@@ -1,0 +1,208 @@
+/*=====*/
+@for $i from 0 through 7 {
+    $angle: -1800deg - ($i * 51deg);
+    .spin-#{$i} {
+      transform: rotateX($angle);
+    }
+    @keyframes spin-#{$i} {
+      0% {
+        transform: rotateX(51deg);
+      }
+      100% {
+        transform: rotateX($angle);
+      }
+    }
+  }
+  
+  @keyframes dot-animate {
+    0% {
+      transform: scale(1);
+      background-color: #68ffa6;
+    }
+    50% {
+      transform: scale(1.5);
+      background-color: #ffed68;
+    }
+    100% {
+      transform: scale(1);
+      background-color: #68ffa6;
+    }
+  }
+  
+  /*=====*/
+  @keyframes back-spin {
+    /*0%    { transform: rotateX(0deg); }*/
+    100% {
+      transform: rotateX(51deg);
+    }
+  }
+  
+  .casino {
+    &__container {
+      text-align: center;
+      grid-area: casino;
+      @include media-breakpoint-up(lg) {
+        flex: 1;
+      }
+    }
+    &__title {
+      text-align: center;
+      grid-area: title;
+  
+      p {
+        color: var(--brand-tertiary);
+        text-transform: uppercase;
+        font-weight: bold;
+        @include ds-m("NONE");
+        span {
+          color: var(--brand-primary);
+        }
+      }
+    }
+    &__body {
+      @include radius("S");
+      @include grid(repeat(3, auto), auto 1fr auto);
+      grid-template-areas:
+        "casinoTop casinoTop casinoTop"
+        "casinoLeft casinoCenter casinoRight"
+        "casinoBotton casinoBotton casinoBotton";
+      background: radial-gradient(ellipse at 50% 50%, #b49eff 10%, #4021a7 85%);
+    }
+    &__dots {
+      &__top {
+        grid-area: casinoTop;
+        @include ds-p("XXS");
+        display: flex;
+        justify-content: space-around;
+      }
+      &__left {
+        grid-area: casinoLeft;
+        @include ds-p("XXS");
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      &__right {
+        grid-area: casinoRight;
+        @include ds-p("XXS");
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      &__botton {
+        grid-area: casinoBotton;
+        @include ds-p("XXS");
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+    &__dot {
+      @include custom-sizing(5px, 5px);
+      background-color: #68ffa6;
+      @include radius("XL");
+      background-size: contain;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        @include custom-sizing(9px, 9px);
+        transform: scale(0.9);
+        @include radius("XL");
+        top: -2px;
+        left: -2px;
+        background: radial-gradient(circle, transparent 0%, #68ffa6 80%);
+        filter: blur(1px);
+      }
+      &.scaleIN {
+        animation-delay: 3s;
+        animation-duration: 0.7s;
+        animation-name: dot-animate;
+        animation-timing-function: ease-in-out;
+      }
+    }
+    &__items {
+      display: flex;
+      align-items: center;
+      @include radius("XXS");
+      @include gap("XXS");
+      @include ds-p("XXS");
+      grid-area: casinoCenter;
+      overflow: hidden;
+      height: 42px;
+      background-color: #141b4d;
+    }
+    &__slot {
+      height: 36px;
+      width: 15vw;
+      overflow: hidden;
+      @include radius("XXS");
+      position: relative;
+      background-color: #fff;
+  
+      @include media-breakpoint-down(sm) {
+        width: 100vw;
+      }
+  
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(
+          0deg,
+          transparent 0%,
+          rgba(0, 0, 0, 0.487) 100%
+        );
+        top: -20px;
+        left: 0;
+        z-index: 1;
+        filter: drop-shadow(2px 4px 6px black);
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(0, 0, 0, 0.487) 100%
+        );
+        bottom: -20px;
+        left: 0;
+        z-index: 1;
+        filter: drop-shadow(2px 4px 6px black);
+      }
+  
+      ul {
+        flex: 1;
+        @include radius("XXS");
+        transform-style: preserve-3d;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        li {
+          text-align: center;
+          @include ds-p("XXS");
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          //background: white;
+  
+          picture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            img {
+              @include media-breakpoint-up(lg) {
+                transform: scale(0.8);
+                transform-origin: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
