@@ -87,17 +87,19 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: url(https://images.unsplash.com/photo-1678500876674-3a50ec26a1e6?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1,h2,h3,p,label,ul,li{
+  color: white;
 }
 
 @media (prefers-color-scheme: dark) {
